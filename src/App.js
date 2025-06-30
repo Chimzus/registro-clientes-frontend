@@ -6,7 +6,7 @@ import { saveAs } from 'file-saver';
 
 // Cambia localhost por la URL de tu backend desplegado
 const SOCKET_URL = 'https://registro-posibles-clientes.onrender.com';
-const API_BASE_URL = 'https://registro-posibles-clientes.onrender.com/api/clientes';
+const API_BASE_URL = 'https://registro-clientes-frontend.onrender.com';
 
 const socket = io(SOCKET_URL);
 
@@ -35,7 +35,7 @@ const App = () => {
     observaciones: ''
   });
 
-  const vendedoras = ["Daniela", "Fernanda", "Lesly", "Ángel"];
+  const vendedoras = ["Julia", "Ariztbe", "Laura", "Guadalupe"];
   const plataformas = ["Facebook", "Instagram", "WhatsApp", "Recomendación"];
   const estatuses = ["pendiente", "en revisión", "descartado", "cerrado"];
 
