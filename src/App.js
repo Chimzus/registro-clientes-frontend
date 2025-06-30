@@ -5,7 +5,7 @@ import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
 const SOCKET_URL = 'https://registro-posibles-clientes.onrender.com';
-const API_BASE_URL = 'https://registro-posibles-clientes.onrender.com';
+const API_BASE_URL = 'https://registro-posibles-clientes.onrender.com/api/clientes';
 
 
 const socket = io(SOCKET_URL);
