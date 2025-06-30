@@ -4,7 +4,6 @@ import io from 'socket.io-client';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
-// Cambia localhost por la URL de tu backend desplegado
 const SOCKET_URL = 'https://registro-posibles-clientes.onrender.com';
 const API_BASE_URL = 'https://registro-clientes-frontend.onrender.com';
 
@@ -42,9 +41,15 @@ const App = () => {
   const obtenerClientes = async () => {
     try {
       const res = await axiosConClave.get('/');
-      setClientes(res.data);
+      if (Array.isArray(res.data)) {
+        setClientes(res.data);
+      } else {
+        console.warn('Respuesta inesperada:', res.data);
+        setClientes([]);
+      }
     } catch (error) {
       alert('Error al obtener clientes: ' + error.message);
+      setClientes([]);
     }
   };
 
@@ -139,6 +144,8 @@ const App = () => {
   };
 
   const filtrarClientes = () => {
+    if (!Array.isArray(clientes)) return [];
+
     let filtrados = clientes.filter(c =>
       Object.values(c).some(val =>
         val?.toString().toLowerCase().includes(filtroBusqueda.toLowerCase())
@@ -217,7 +224,7 @@ const App = () => {
       <div style={sectionStyle}>
         <h2>{editandoId ? 'Editar Cliente' : 'Nuevo Cliente'}</h2>
         <input style={inputStyle} name="nombre" value={nuevoCliente.nombre} onChange={handleChange} placeholder="Nombre" />
-        <input style={inputStyle} type="date" name="fechaSolicitud" value={nuevoCliente.fechaSolicitud ? nuevoCliente.fechaSolicitud.substring(0,10) : ''} onChange={handleChange} />
+        <input style={inputStyle} type="date" name="fechaSolicitud" value={nuevoCliente.fechaSolicitud?.substring(0,10) || ''} onChange={handleChange} />
         <input style={inputStyle} type="number" name="numeroPersonas" value={nuevoCliente.numeroPersonas} onChange={handleChange} placeholder="Número de personas" />
         <input style={inputStyle} name="tipoEvento" value={nuevoCliente.tipoEvento} onChange={handleChange} placeholder="Tipo de evento" />
         <select style={inputStyle} name="plataforma" value={nuevoCliente.plataforma} onChange={handleChange}>
