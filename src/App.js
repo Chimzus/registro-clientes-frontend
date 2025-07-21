@@ -25,15 +25,16 @@ const App = () => {
   const [filtroEstatus, setFiltroEstatus] = useState('');
   const [editandoId, setEditandoId] = useState(null);
   const [nuevoCliente, setNuevoCliente] = useState({
-    nombre: '',
-    fechaSolicitud: '',
-    numeroPersonas: '',
-    tipoEvento: '',
-    plataforma: '',
-    vendedora: '',
-    estatus: 'pendiente',
-    observaciones: ''
-  });
+  nombre: '',
+  fechaSolicitud: '',
+  numeroPersonas: '',
+  tipoEvento: '',
+  plataforma: '',
+  vendedora: '',
+  estatus: 'pendiente',
+  observaciones: '',
+  telefono: ''
+});
 
   const vendedoras = ["Julia", "Ariztbe", "Laura", "Guadalupe"];
   const plataformas = ["Facebook", "Instagram", "WhatsApp", "Recomendación"];
@@ -93,15 +94,16 @@ const App = () => {
       }
       obtenerClientes();
       setNuevoCliente({
-        nombre: '',
-        fechaSolicitud: '',
-        numeroPersonas: '',
-        tipoEvento: '',
-        plataforma: '',
-        vendedora: '',
-        estatus: 'pendiente',
-        observaciones: ''
-      });
+     nombre: '',
+     fechaSolicitud: '',
+   numeroPersonas: '',
+  tipoEvento: '',
+  plataforma: '',
+  vendedora: '',
+  estatus: 'pendiente',
+  observaciones: '',
+  telefono: '' 
+});
       setEditandoId(null);
     } catch (err) {
       alert('Error al crear o editar cliente: ' + (err.response?.data?.error || err.message));
@@ -241,6 +243,7 @@ const App = () => {
         </select>
         <input style={{ ...inputStyle, width: '100%' }} name="observaciones" value={nuevoCliente.observaciones} onChange={handleChange} placeholder="Observaciones" />
         <br />
+        <input style={{ ...inputStyle, width: '100%' }} name="telefono" value={nuevoCliente.telefono} onChange={handleChange} placeholder="Teléfono"/>
         <button onClick={crearCliente} style={{ ...inputStyle, cursor: 'pointer', backgroundColor: '#007bff', color: '#fff', width: '220px' }}>{editandoId ? 'Actualizar' : 'Agregar'} cliente</button>
       </div>
 
@@ -277,6 +280,7 @@ const App = () => {
             <p><strong>Plataforma:</strong> {cliente.plataforma}</p>
             <p><strong>Vendedora:</strong> {cliente.vendedora}</p>
             <p><strong>Observaciones:</strong> {cliente.observaciones}</p>
+            <p><strong>Teléfono:</strong> {cliente.telefono}</p>
             <p>
               <strong>Estatus:</strong>{' '}
               <span style={{ color: colorPorEstatus(cliente.estatus), fontWeight: 'bold' }}>
