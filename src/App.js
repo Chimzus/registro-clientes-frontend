@@ -36,7 +36,7 @@ const App = () => {
   telefono: ''
 });
 
-  const vendedoras = ["Julia", "Ariztbe", "Laura", "Guadalupe"];
+  const vendedoras = ["Julia", "Arizbe", "Laura", "Guadalupe"];
   const plataformas = ["Facebook", "Instagram", "WhatsApp", "Recomendación"];
   const estatuses = ["pendiente", "en revisión", "descartado", "cerrado"];
 
